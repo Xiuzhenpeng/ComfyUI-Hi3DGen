@@ -14,7 +14,7 @@ pymeshfix
 igraph
 spconv-cu124
 onnxruntime
-kaolin -f https://nvidia-kaolin.s3.us-east-2.amazonaws.com/torch-2.4.0_cu124.html
+git+https://github.com/EasternJournalist/utils3d.git
 
 # triton ( Windows specific builds from : https://github.com/woct0rdho/triton-windows )
 https://github.com/woct0rdho/triton-windows/releases/download/v3.1.0-windows.post8/triton-3.1.0-cp312-cp312-win_amd64.whl; (python_version >= "3.12" and python_version < "3.13")
