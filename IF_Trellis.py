@@ -49,6 +49,7 @@ class IF_TrellisImageTo3D:
                 "slat_sampling_steps": ("INT", {"default": 12, "min": 1, "max": 100}),
                 "mesh_simplify": ("FLOAT", {"default": 0.95, "min": 0.9, "max": 1.0, "step": 0.01, "tooltip": "Simplify the mesh. the lower the value more polygons the mesh will have"}),
                 "multimode": (["stochastic", "multidiffusion"], {"default": "stochastic"}),
+                "folder_name": ("STRING", {"default": "hi3dgen"}),
                 "project_name": ("STRING", {"default": "trellis_output"}),
             },
             "optional": {
@@ -127,8 +128,8 @@ class IF_TrellisImageTo3D:
 
         return processed_images
     
-    def generate_outputs(self, outputs, project_name,):
-        out_dir = os.path.join(self.output_dir, project_name)
+    def generate_outputs(self, outputs, folder_name, project_name,):
+        out_dir = os.path.join(self.output_dir, folder_name)
         os.makedirs(out_dir, exist_ok=True)
 
         video_path = glb_path = ""
@@ -208,6 +209,7 @@ class IF_TrellisImageTo3D:
         slat_sampling_steps: int,
         mesh_simplify: float,
         multimode: str,
+        folder_name: str,
         project_name: str,
         masks: Optional[torch.Tensor] = None,
     ) -> Tuple[str, str, torch.Tensor]:
@@ -241,6 +243,7 @@ class IF_TrellisImageTo3D:
 
                 video_path, glb_path, _, _, texture_image, _ = self.generate_outputs(
                     outputs,
+                    folder_name,
                     project_name,
                 )
 
